@@ -1,6 +1,24 @@
 import java.util.Scanner;
 import java.io.*;
+
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*Main Class of the contacts book program
+*/
+
 public class Main {
+
+	/**
+	*@@author Irvin Mundo
+	*@version 1.0 built on March 8th, 2019
+	*@params args
+	*@params contacts
+	*@params contact
+	*@params index
+	*Main method of the contacts book program; it starts with the menu selection, then it calls for the needed methods
+	*/
+
 	static String [] [] contacts = new String [100] [5]; // Contain all the contacts
   static String [] contact = new String [5]; 	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
   static int index = 0; //This indicates how many registers are in the contacts book
@@ -63,6 +81,11 @@ public class Main {
 	/*
 	*Add a contact after give the requested information calling the writeDataMethod to do so
 	*/
+	/**
+	*@@author Irvin Mundo
+	*@version 1.0 built on March 8th, 2019
+	*Add a contact
+	*/
   static void addContact () {
 	    boolean flag = false;
 	    writeData();
@@ -86,6 +109,11 @@ public class Main {
 /*
 * Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
 */
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*Delete a contact
+*/
   static void deleteContact () {
 
 			if (searchContact() > 0) {
@@ -105,6 +133,11 @@ public class Main {
 /*
 * Edits a contacts; you have to search the contat that you want to edit
 */
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*Edit a contact
+*/
   static void editContact () {
 
 	    if (searchContact() > 0) {
@@ -120,6 +153,12 @@ public class Main {
 
 /*
 *Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the params
+*/
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*@@return auxiliarIndex Number of register that match with the pattern
+*Search a contact
 */
   static int searchContact () {
 	    int option;
@@ -151,7 +190,11 @@ public class Main {
 	/*
 	*End the program
 	*/
-
+	/**
+	*@@author Irvin Mundo
+	*@version 1.0 built on March 8th, 2019
+	*End the program
+	*/
   static void exit () {
 
     /*try {
@@ -173,6 +216,11 @@ public class Main {
 /*
 * Provides the process to retrieve information of the user for adding or editing contacts
 */
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*Provides to the user tha capability to enter information
+*/
   static void writeData () {
       System.out.println("Write name");
       contact[0] = sc.nextLine();
@@ -188,14 +236,24 @@ public class Main {
   }
 
 /*
-* Display all contacts 
+* Display all contacts
+*/
+/**
+*@@author Irvin Mundo
+*@version 1.0 built on March 8th, 2019
+*Prints all contacts
 */
   static void displayContacts () {
 		//This method prints the whole contacts [] [], which contains all the contacts
-      System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
-	    for (int i=0; i<index; i++) {
-	        System.out.println("| \t"+contacts[i][0]+"\t | \t\t"+ contacts[i][1] +" "+ contacts[i][2] +"\t\t | "+contacts[i][3]+" | \t "+ contacts[i][4]+"\t |");
-	    }
+			if (index > 0) {
+					System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
+			    for (int i=0; i<index; i++) {
+			        System.out.println("| \t"+contacts[i][0]+"\t | \t\t"+ contacts[i][1] +" "+ contacts[i][2] +"\t\t | "+contacts[i][3]+" | \t "+ contacts[i][4]+"\t |");
+			    }
+			} else {
+					System.out.println("The are not contacts to display");
+			}
+
   }
 
 }
