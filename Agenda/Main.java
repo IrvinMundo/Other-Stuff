@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
-*@@author Irvin Mundo
+*@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
 *Main Class of the contacts book program
 */
@@ -12,11 +12,8 @@ public class Main {
 	/**
 	*@@author Irvin Mundo
 	*@version 1.0 built on March 8th, 2019
-	*@params args
-	*@params contacts
-	*@params contact
-	*@params index
-	*Main method of the contacts book program; it starts with the menu selection, then it calls for the needed methods
+	*@param args
+	*@return {Void}
 	*/
 
 	static String [] [] contacts = new String [100] [5]; // Contain all the contacts
@@ -78,13 +75,12 @@ public class Main {
     }
 
 	}
-	/*
-	*Add a contact after give the requested information calling the writeDataMethod to do so
-	*/
+
 	/**
 	*@@author Irvin Mundo
 	*@version 1.0 built on March 8th, 2019
-	*Add a contact
+	*@return {Void}
+	*Add a contact after give the requested information calling the writeDataMethod to do so
 	*/
   static void addContact () {
 	    boolean flag = false;
@@ -106,13 +102,12 @@ public class Main {
 			System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has benn added");
 
   }
-/*
-* Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
-*/
+
 /**
 *@@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
-*Delete a contact
+*@return {Void}
+* Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
 */
   static void deleteContact () {
 
@@ -130,13 +125,11 @@ public class Main {
 			}
   }
 
-/*
-* Edits a contacts; you have to search the contat that you want to edit
-*/
 /**
 *@@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
-*Edit a contact
+*@return {Void}
+* Edits a contacts; you have to search the contat that you want to edit
 */
   static void editContact () {
 
@@ -151,14 +144,11 @@ public class Main {
 
   }
 
-/*
-*Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the params
-*/
 /**
 *@@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
 *@@return auxiliarIndex Number of register that match with the pattern
-*Search a contact
+*Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
 */
   static int searchContact () {
 	    int option;
@@ -187,9 +177,6 @@ public class Main {
 			return auxiliarIndex;
   }
 
-	/*
-	*End the program
-	*/
 	/**
 	*@@author Irvin Mundo
 	*@version 1.0 built on March 8th, 2019
@@ -213,13 +200,10 @@ public class Main {
   }
 
 
-/*
-* Provides the process to retrieve information of the user for adding or editing contacts
-*/
 /**
 *@@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
-*Provides to the user tha capability to enter information
+* Provides the process to retrieve information of the user for adding or editing contacts
 */
   static void writeData () {
       System.out.println("Write name");
@@ -235,13 +219,11 @@ public class Main {
 
   }
 
-/*
-* Display all contacts
-*/
 /**
 *@@author Irvin Mundo
 *@version 1.0 built on March 8th, 2019
-*Prints all contacts
+*@@return {Void}
+* Display all contacts
 */
   static void displayContacts () {
 		//This method prints the whole contacts [] [], which contains all the contacts
