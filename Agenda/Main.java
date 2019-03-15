@@ -2,70 +2,70 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
-*Main Class of the contacts book program
-*/
+ * Main Class of the contacts book program
+ */
 
 public class Main {
 
 	/**
-
-	*@param {String []} contact - It contains the contact that is edited, deleted or added
-	*@param {String [][]} contacts - It contains all contacts saved
-	*@param {String []} args
-	*@param {int} index - Indicates how many contacts the contact book has
-	*@param {Scanner} sc - Provides the functions needed for requesting information
-
-	*@return {Void}
-	*/
+	 *
+	 * @param {String []} contact - It contains the contact that is edited, deleted or added
+	 * @param {String [][]} contacts - It contains all contacts saved
+	 * @param {String []} args
+	 * @param {int} index - Indicates how many contacts the contact book has
+	 * @param {Scanner} sc - Provides the functions needed for requesting information
+	 *
+	 * @return {Void}
+	 */
 
 	// Contain all the contacts
 	static String [] [] contacts = new String [100] [5];
 	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
 	static String [] contact = new String [5];
-	//This indicates how many registers are in the contacts book
+	// This indicates how many registers are in the contacts book
 	static int index = 0;
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main (String [] args) {
-		//In order to keep the program repeating the process
+		// In order to keep the program repeating the process
 		while(true){
-			//Option For The Actions
+			// Option For The Actions
 			int option;
 			System.out.println("Menu \n Which option would you desire to use \n\t1. Add Contact\n\t 2. Delete Contact \n\t 3. Edit Contacts  \n\t 4. Search Contact \n\t 5. Display Contacts \n\t 6. Exit and export contacts ");
 			option = Integer.parseInt(sc.nextLine());
-			//Additional Check for preventing doing actions in a empty book
+			// Additional Check for preventing doing actions in a empty book
 			if (index <= 0 && ( option >= 2 && option <=5 ) ) {
 				System.out.println("The contact book is empty");
 				continue;
 			} else {
-				//Additional Check for preventing to overfill the array
+				// Additional Check for preventing to overfill the array
 				if ( index > 99 ) {
 					System.out.println("The contact book is full");
 					continue;
 				}
 			}
 			switch (option) {
-				//Add Contact
+				// Add Contact
 				case 1:
 					addContact();
 					break;
-				//Delete Contact
+				// Delete Contact
 				case 2:
 					deleteContact();
 					break;
-				//Edit Contact
+				// Edit Contact
 				case 3:
 					editContact();
 					break;
-				//Search Contact
+				// Search Contact
 				case 4:
 					searchContact();
 					break;
-				//Display Contacts
+				// Display Contacts
 				case 5:
 					displayContacts();
 					break;
-				//Exit the program
+				// Exit the program
 				case 6:
 					exit();
 					break;
@@ -79,9 +79,9 @@ public class Main {
 	}
 
 	/**
-	*@return {Void}
-	*Add a contact after give the requested information calling the writeDataMethod to do so
-	*/
+	 * @return {Void}
+	 * Add a contact after give the requested information calling the writeDataMethod to do so
+	 */
 	static void addContact () {
 		boolean flag = false;
 		writeData();
@@ -104,9 +104,9 @@ public class Main {
 	}
 
 	/**
-	*@return {Void}
-	* Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
-	*/
+	 * @return {Void}
+	 * Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
+	 */
 	static void deleteContact () {
 
 		if (searchContact() > 0) {
@@ -124,9 +124,9 @@ public class Main {
 	}
 
 	/**
-	* Edits a contacts; you have to search the contat that you want to edit
-	*@return {Void}
-	*/
+	 * Edits a contacts; you have to search the contat that you want to edit
+	 * @return {Void}
+	 */
 	static void editContact () {
 
 		if (searchContact() > 0) {
@@ -141,9 +141,9 @@ public class Main {
 	}
 
 	/**
-	*@@return auxiliarIndex Number of register that match with the pattern
-	*Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
-	*/
+	 * @return auxiliarIndex Number of register that match with the pattern
+	 * Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
+	 */
 	static int searchContact () {
 		int option;
 		System.out.println("Do you want to search by... Press\n\t1.Name\n\t 2. Parental Surnames \n\t 3. Maternal Surnames  \n\t 4. Telephone Number \n\t 5. Address");
@@ -173,9 +173,11 @@ public class Main {
 	}
 
 	/**
-	*End the program
-	^@return {Void}
-	*/
+	 *
+	 * End the program
+	 * @return {Void}
+	 *
+	 */
 	static void exit () {
 
 		/*try {
@@ -194,9 +196,11 @@ public class Main {
 
 
 	/**
-	* Provides the process to retrieve information of the user for adding or editing contacts
-	* @@return {Void}
-	*/
+	 *
+	 * Provides the process to retrieve information of the user for adding or editing contacts
+	 * @return {Void}
+	 *
+	 */
 	static void writeData () {
 		System.out.println("Write name");
 		contact[0] = sc.nextLine();
@@ -212,11 +216,13 @@ public class Main {
 	}
 
 	/**
-	*@@return {Void}
-	* Display all contacts
-	*/
+	 *
+	 * @return {Void}
+	 * Display all contacts
+	 *
+	 */
 	static void displayContacts () {
-		//This method prints the whole contacts [] [], which contains all the contacts
+		// This method prints the whole contacts [] [], which contains all the contacts
 		if (index > 0) {
 			System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
 			for (int i = 0; i < index; i++) {
