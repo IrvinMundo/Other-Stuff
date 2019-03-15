@@ -79,9 +79,11 @@ public class Main {
 	}
 
 	/**
-	 * @return {Void}
 	 * Add a contact after give the requested information calling the writeDataMethod to do so
+	 *
+	 * @return {Void}
 	 */
+
 	static void addContact () {
 		boolean flag = false;
 		writeData();
@@ -104,8 +106,9 @@ public class Main {
 	}
 
 	/**
-	 * @return {Void}
 	 * Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
+	 *
+	 * @return {Void}
 	 */
 	static void deleteContact () {
 
@@ -125,6 +128,7 @@ public class Main {
 
 	/**
 	 * Edits a contacts; you have to search the contat that you want to edit
+	 *
 	 * @return {Void}
 	 */
 	static void editContact () {
@@ -142,6 +146,7 @@ public class Main {
 
 	/**
 	 * @return auxiliarIndex Number of register that match with the pattern
+	 *
 	 * Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
 	 */
 	static int searchContact () {
@@ -173,10 +178,9 @@ public class Main {
 	}
 
 	/**
-	 *
 	 * End the program
-	 * @return {Void}
 	 *
+	 * @return {Void}
 	 */
 	static void exit () {
 
@@ -196,10 +200,9 @@ public class Main {
 
 
 	/**
-	 *
 	 * Provides the process to retrieve information of the user for adding or editing contacts
-	 * @return {Void}
 	 *
+	 * @return {Void}
 	 */
 	static void writeData () {
 		System.out.println("Write name");
@@ -216,10 +219,9 @@ public class Main {
 	}
 
 	/**
-	 *
 	 * @return {Void}
-	 * Display all contacts
 	 *
+	 * Display all contacts
 	 */
 	static void displayContacts () {
 		// This method prints the whole contacts [] [], which contains all the contacts
