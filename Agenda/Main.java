@@ -219,9 +219,9 @@ public class Main {
 	}
 
 	/**
-	 * @return {Void}
 	 *
 	 * Display all contacts
+	 * @return {Void}
 	 */
 	static void displayContacts () {
 		// This method prints the whole contacts [] [], which contains all the contacts
