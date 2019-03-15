@@ -2,74 +2,90 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
-*@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
 *Main Class of the contacts book program
 */
 
 public class Main {
 
 	/**
-	*@@author Irvin Mundo
-	*@version 1.0 built on March 8th, 2019
-	*@param args
+
+	*@param {String []} contact - It contains the contact that is edited, deleted or added
+	*@param {String [][]} contacts - It contains all contacts saved
+	*@param {String []} args
+	*@param {int} index - Indicates how many contacts the contact book has
+	*@param {Scanner} sc - Provides the functions needed for requesting information
+
 	*@return {Void}
 	*/
-
-	static String [] [] contacts = new String [100] [5]; // Contain all the contacts
-  static String [] contact = new String [5]; 	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
-  static int index = 0; //This indicates how many registers are in the contacts book
+	// Contain all the contacts
+	static String [] [] contacts = new String [100] [5];
+	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
+  static String [] contact = new String [5];
+	//This indicates how many registers are in the contacts book
+  static int index = 0;
   static Scanner sc = new Scanner(System.in);
 
 	public static void main (String [] args) {
-      while(true){//In order to keep the program repeating the process
-
-		      int option;//Option For The Actions
+			//In order to keep the program repeating the process
+      while(true){
+					//Option For The Actions
+		      int option;
 		      System.out.println("Menu \n Which option would you desire to use \n\t1. Add Contact\n\t 2. Delete Contact \n\t 3. Edit Contacts  \n\t 4. Search Contact \n\t 5. Display Contacts \n\t 6. Exit and export contacts ");
 		      option = Integer.parseInt(sc.nextLine());
 
 		      switch (option) {
-			        case 1://Add Contact
-			            if (index < 99 ) { //Additional Check for preventing to overfill the array
+							//Add Contact
+			        case 1:
+									//Additional Check for preventing to overfill the array
+			            if (index < 99 ) {
 			              	addContact();
 			            } else {
 			              	System.out.println("The contact book is full");
 			            }
-			          break;
-			        case 2://Delete Contact
-			            if (index > 0) {	//Additional Check for preventing doing actions in a empty book
+			          	break;
+								//Delete Contact
+			        case 2:
+									//Additional Check for preventing doing actions in a empty book
+			            if (index > 0) {
 			              	deleteContact();
 			            } else {
 			              	System.out.println("The contact book is empty");
 			            }
-			          break;
-			        case 3://Edit Contact
-									if( index > 0) {	//Additional Check for preventing doing actions in a empty book
+			          	break;
+							//Edit Contact
+			        case 3:
+									//Additional Check for preventing doing actions in a empty book
+									if( index > 0) {
 											editContact();
 									} else {
 											System.out.println("The contact book is empty");
 									}
-			          break;
-			        case 4: //Search Contact
-									if (index > 0) { 	//Additional Check for preventing doing actions in a empty book
+			          	break;
+							//Search Contact
+			        case 4:
+									//Additional Check for preventing doing actions in a empty book
+									if (index > 0) {
 											searchContact();
 									} else {
 											System.out.println("The contact book is empty");
 									}
-			          break;
-			        case 5://Display Contacts
-									if (index > 0) { //Additional Check for preventing doing actions in a empty book
+			          	break;
+							//Display Contacts
+			        case 5:
+									//Additional Check for preventing doing actions in a empty book
+									if (index > 0) {
 											displayContacts();
 									} else {
 											System.out.println("The contact book is empty");
 									}
-			          break;
-			        case 6://Exit the program
+			          	break;
+							//Exit the program
+			        case 6:
 			        		exit();
-			          break;
+			          	break;
 			        default:
 									System.out.println("Invalid option");
-			        	break;
+			        		break;
 		        }
 
     }
@@ -77,17 +93,15 @@ public class Main {
 	}
 
 	/**
-	*@@author Irvin Mundo
-	*@version 1.0 built on March 8th, 2019
 	*@return {Void}
 	*Add a contact after give the requested information calling the writeDataMethod to do so
 	*/
   static void addContact () {
 	    boolean flag = false;
 	    writeData();
-	    for (int i=0; i<index && !flag; i++) {
+	    for (int i = 0; i < index && !flag; i++) {
 		      if (contact[0].compareTo(contacts[i][0]) > 0) {
-			        for (int j=index; j>=i; j--) {
+			        for (int j = index; j>=i; j--) {
 			          	contacts[j+1]=contacts[j];
 			        }
 			        contacts [i] = contact;
@@ -104,8 +118,6 @@ public class Main {
   }
 
 /**
-*@@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
 *@return {Void}
 * Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
 */
@@ -115,7 +127,7 @@ public class Main {
 			    System.out.println("Write the number that matches with the contact you want to delete");
 			    int a = Integer.parseInt(sc.nextLine());
 			    contacts [a] = contact;
-			    for (int j=a; j<=index; j++){
+			    for (int j = a; j <= index; j++){
 			      contacts[j]=contacts[j+1];
 			    }
 			    index--;
@@ -126,10 +138,8 @@ public class Main {
   }
 
 /**
-*@@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
-*@return {Void}
 * Edits a contacts; you have to search the contat that you want to edit
+*@return {Void}
 */
   static void editContact () {
 
@@ -145,8 +155,6 @@ public class Main {
   }
 
 /**
-*@@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
 *@@return auxiliarIndex Number of register that match with the pattern
 *Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
 */
@@ -166,7 +174,7 @@ public class Main {
 	    };
 	    System.out.println("Write the "+ categories[option-1]+" that you want to search");
 	    String search = sc.nextLine();
-	    for (int i=0; i<index; i++){
+	    for (int i = 0; i < index; i++){
 	        if (contacts[i][option-1].toLowerCase().contains(search.toLowerCase())) {
 	        System.out.println("| " + i+ "\t"+contacts[i][0]+"\t | \t\t"+ contacts[i][1] +" "+ contacts[i][2] +"\t\t | "+contacts[i][3]+" | \t "+ contacts[i][4]+"\t |");
 	        auxiliarIndex++;
@@ -178,9 +186,8 @@ public class Main {
   }
 
 	/**
-	*@@author Irvin Mundo
-	*@version 1.0 built on March 8th, 2019
 	*End the program
+	^@return {Void}
 	*/
   static void exit () {
 
@@ -201,9 +208,8 @@ public class Main {
 
 
 /**
-*@@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
 * Provides the process to retrieve information of the user for adding or editing contacts
+* @@return {Void}
 */
   static void writeData () {
       System.out.println("Write name");
@@ -220,8 +226,6 @@ public class Main {
   }
 
 /**
-*@@author Irvin Mundo
-*@version 1.0 built on March 8th, 2019
 *@@return {Void}
 * Display all contacts
 */
@@ -229,8 +233,8 @@ public class Main {
 		//This method prints the whole contacts [] [], which contains all the contacts
 			if (index > 0) {
 					System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
-			    for (int i=0; i<index; i++) {
-			        System.out.println("| \t"+contacts[i][0]+"\t | \t\t"+ contacts[i][1] +" "+ contacts[i][2] +"\t\t | "+contacts[i][3]+" | \t "+ contacts[i][4]+"\t |");
+			    for (int i = 0; i < index; i++) {
+			        System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
 			    }
 			} else {
 					System.out.println("The are not contacts to display");
