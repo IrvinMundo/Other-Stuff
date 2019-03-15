@@ -33,10 +33,12 @@ public class Main {
 			int option;
 			System.out.println("Menu \n Which option would you desire to use \n\t1. Add Contact\n\t 2. Delete Contact \n\t 3. Edit Contacts  \n\t 4. Search Contact \n\t 5. Display Contacts \n\t 6. Exit and export contacts ");
 			option = Integer.parseInt(sc.nextLine());
+			//Additional Check for preventing doing actions in a empty book
 			if (index <= 0 && ( option >= 2 && option <=5 ) ) {
 				System.out.println("The contact book is empty");
 				continue;
 			} else {
+				//Additional Check for preventing to overfill the array
 				if ( index > 99 ) {
 					System.out.println("The contact book is full");
 					continue;
@@ -45,27 +47,22 @@ public class Main {
 			switch (option) {
 				//Add Contact
 				case 1:
-					//Additional Check for preventing to overfill the array
 					addContact();
 					break;
 				//Delete Contact
 				case 2:
-					//Additional Check for preventing doing actions in a empty book
 					deleteContact();
 					break;
 				//Edit Contact
 				case 3:
-					//Additional Check for preventing doing actions in a empty book
 					editContact();
 					break;
-					//Search Contact
+				//Search Contact
 				case 4:
-					//Additional Check for preventing doing actions in a empty book
 					searchContact();
 					break;
 				//Display Contacts
 				case 5:
-					//Additional Check for preventing doing actions in a empty book
 					displayContacts();
 					break;
 				//Exit the program
