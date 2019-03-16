@@ -6,26 +6,22 @@ import java.io.*;
  */
 
 public class Main {
-
-	/**
-	 *
-	 * @param {String []} contact - It contains the contact that is edited, deleted or added
-	 * @param {String [][]} contacts - It contains all contacts saved
-	 * @param {String []} args
-	 * @param {int} index - Indicates how many contacts the contact book has
-	 * @param {Scanner} sc - Provides the functions needed for requesting information
-	 *
-	 * @return {Void}
-	 */
+	static Scanner sc = new Scanner(System.in);
 
 	// Contain all the contacts
 	static String [] [] contacts = new String [100] [5];
+
 	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
 	static String [] contact = new String [5];
+
 	// This indicates how many registers are in the contacts book
 	static int index = 0;
-	static Scanner sc = new Scanner(System.in);
 
+	/**
+	 * @param {String []} args
+	 *
+	 * @return {Void}
+	 */
 	public static void main (String [] args) {
 		// In order to keep the program repeating the process
 		while(true){
@@ -83,25 +79,31 @@ public class Main {
 	 *
 	 * @return {Void}
 	 */
-
 	static void addContact () {
-		boolean flag = false;
+		int auxindex = 0;
 		writeData();
-		for (int i = 0; i < index && !flag; i++) {
-			if (contact[0].compareTo(contacts[i][0]) > 0) {
-				for (int j = index; j>=i; j--) {
-					contacts[j+1]=contacts[j];
+		for (int i = 0; i < index ; i++) {
+			System.out.println(contact[0] + " - " + contacts[i][0]);
+			System.out.println(contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()));
+			if (contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()) < 0) {
+				for (int j = index-1; j>=i; j--) {
+					for ( int k = 0; k < 5; k++) {
+						contacts [j+1] [k] = contacts[j][k];
+					}
 				}
-				contacts [i] = contact;
-				flag = true;
-				index++;
+				auxindex = i;
+				break;
 			}
 		}
-		if (!flag) {
-			contacts [index] = contact;
-			index++;
+		for ( int i = 0; i < 5; i++) {
+			contacts [auxindex] [i] = contact[i];
 		}
-		System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has benn added");
+		print();
+
+		index++;
+
+		System.out.println(index);
+		System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been added");
 
 	}
 
@@ -115,12 +117,18 @@ public class Main {
 		if (searchContact() > 0) {
 			System.out.println("Write the number that matches with the contact you want to delete");
 			int a = Integer.parseInt(sc.nextLine());
-			contacts [a] = contact;
+			for ( int i = 0; i < 5; i++) {
+				contacts [a] [i] = contact[i];
+			}
 			for (int j = a; j <= index; j++){
-				contacts[j]=contacts[j+1];
+				for ( int k = 0; k < 5; k++) {
+					contacts [j] [k] = contacts[j+1][k];
+				}
 			}
 			index--;
-			System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has benn removed");
+			System.out.println(index);
+			print();
+			System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been removed");
 		} else {
 			System.out.println("There are not contacts with the given information");
 		}
@@ -137,7 +145,9 @@ public class Main {
 			System.out.println("Write the number that matches with the contact you want to edit");
 			int a = Integer.parseInt(sc.nextLine());
 			writeData();
-			contacts [a] = contact;
+			for ( int i = 0; i < 5; i++) {
+				contacts [a] [i] = contact[i];
+			}
 		} else {
 			System.out.println("There are not contacts with the given information");
 		}
@@ -145,9 +155,9 @@ public class Main {
 	}
 
 	/**
-	 * @return auxiliarIndex Number of register that match with the pattern
-	 *
 	 * Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
+	 *
+	 * @return auxiliarIndex Number of register that match with the pattern
 	 */
 	static int searchContact () {
 		int option;
@@ -225,15 +235,18 @@ public class Main {
 	 */
 	static void displayContacts () {
 		// This method prints the whole contacts [] [], which contains all the contacts
-		if (index > 0) {
-			System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
-			for (int i = 0; i < index; i++) {
-				System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
-			}
-		} else {
-			System.out.println("The are not contacts to display");
+		System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
+		for (int i = 0; i < index; i++) {
+			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
 		}
 
+
+	}
+
+	static void print(){
+		for (int i = 0; i < 10; i++) {
+			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
+		}
 	}
 
 }
