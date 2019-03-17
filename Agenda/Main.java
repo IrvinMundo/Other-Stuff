@@ -8,21 +8,18 @@ import java.io.*;
 public class Main {
 	static Scanner sc = new Scanner(System.in);
 
-	// Contain all the contacts
-	static String [] [] contacts = new String [100] [5];
-
-	// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
-	static String [] contact = new String [5];
-
-	// This indicates how many registers are in the contacts book
-	static int index = 0;
-
 	/**
 	 * @param {String []} args
 	 *
 	 * @return {Void}
 	 */
 	public static void main (String [] args) {
+		// Contain all the contacts
+	 	String [] [] contacts = new String [100] [5];
+
+		// This indicates how many registers are in the contacts book
+	 	int index = 0;
+
 		// In order to keep the program repeating the process
 		while(true){
 			// Option For The Actions
@@ -43,23 +40,27 @@ public class Main {
 			switch (option) {
 				// Add Contact
 				case 1:
-					addContact();
+					contacts = addContact(contacts, index);
+					index = index(contacts, index);
+					System.out.println(index);
 					break;
 				// Delete Contact
 				case 2:
-					deleteContact();
+					contacts = deleteContact(contacts,index);
+					index = index(contacts, index);
+					System.out.println(index);
 					break;
 				// Edit Contact
 				case 3:
-					editContact();
+					contacts = editContact(contacts, index);
 					break;
 				// Search Contact
 				case 4:
-					searchContact();
+					searchContact(contacts, index);
 					break;
 				// Display Contacts
 				case 5:
-					displayContacts();
+					displayContacts(contacts, index);
 					break;
 				// Exit the program
 				case 6:
@@ -79,9 +80,9 @@ public class Main {
 	 *
 	 * @return {Void}
 	 */
-	static void addContact () {
+	static String [] [] addContact (String [] [] contacts, int index) {
 		int auxindex = 0;
-		writeData();
+		String [] contact = writeData();
 		for (int i = 0; i < index ; i++) {
 			System.out.println(contact[0] + " - " + contacts[i][0]);
 			System.out.println(contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()));
@@ -93,18 +94,17 @@ public class Main {
 				}
 				auxindex = i;
 				break;
+			}else{
+				auxindex++;
 			}
 		}
 		for ( int i = 0; i < 5; i++) {
 			contacts [auxindex] [i] = contact[i];
 		}
-		print();
+		print(contacts);
 
-		index++;
-
-		System.out.println(index);
-		System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been added");
-
+		System.out.println("The contact "+ contact[0] + " " + contact[1] + " " + contact[2] + " has been added");
+		return contacts;
 	}
 
 	/**
@@ -112,26 +112,26 @@ public class Main {
 	 *
 	 * @return {Void}
 	 */
-	static void deleteContact () {
+	static String [] [] deleteContact (String [] [] contacts, int index) {
 
-		if (searchContact() > 0) {
+		if (searchContact(contacts, index) > 0) {
 			System.out.println("Write the number that matches with the contact you want to delete");
 			int a = Integer.parseInt(sc.nextLine());
+			String [] contact = new String [5];
 			for ( int i = 0; i < 5; i++) {
-				contacts [a] [i] = contact[i];
+				contact[i] = contacts [a] [i];
 			}
 			for (int j = a; j <= index; j++){
 				for ( int k = 0; k < 5; k++) {
 					contacts [j] [k] = contacts[j+1][k];
 				}
 			}
-			index--;
-			System.out.println(index);
-			print();
+			print(contacts);
 			System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been removed");
 		} else {
 			System.out.println("There are not contacts with the given information");
 		}
+		return contacts;
 	}
 
 	/**
@@ -139,19 +139,19 @@ public class Main {
 	 *
 	 * @return {Void}
 	 */
-	static void editContact () {
+	static String [] [] editContact (String [] [] contacts, int index) {
 
-		if (searchContact() > 0) {
+		if (searchContact(contacts, index) > 0) {
 			System.out.println("Write the number that matches with the contact you want to edit");
 			int a = Integer.parseInt(sc.nextLine());
-			writeData();
+			String [] contact = writeData();
 			for ( int i = 0; i < 5; i++) {
 				contacts [a] [i] = contact[i];
 			}
 		} else {
 			System.out.println("There are not contacts with the given information");
 		}
-
+		return contacts;
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class Main {
 	 *
 	 * @return auxiliarIndex Number of register that match with the pattern
 	 */
-	static int searchContact () {
+	static int searchContact (String [] [] contacts, int index) {
 		int option;
 		System.out.println("Do you want to search by... Press\n\t1.Name\n\t 2. Parental Surnames \n\t 3. Maternal Surnames  \n\t 4. Telephone Number \n\t 5. Address");
 		option = Integer.parseInt(sc.nextLine());
@@ -214,8 +214,10 @@ public class Main {
 	 *
 	 * @return {Void}
 	 */
-	static void writeData () {
-		System.out.println("Write name");
+	static String [] writeData () {
+
+		// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
+	 	String [] contact = new String [5];System.out.println("Write name");
 		contact[0] = sc.nextLine();
 		System.out.println("Write your Parental Surname");
 		contact[1] = sc.nextLine();
@@ -225,7 +227,7 @@ public class Main {
 		contact[3] = sc.nextLine();
 		System.out.println("Write your full address");
 		contact[4] = sc.nextLine();
-
+		return contact;
 	}
 
 	/**
@@ -233,7 +235,7 @@ public class Main {
 	 * Display all contacts
 	 * @return {Void}
 	 */
-	static void displayContacts () {
+	static void displayContacts (String [] [] contacts, int index) {
 		// This method prints the whole contacts [] [], which contains all the contacts
 		System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
 		for (int i = 0; i < index; i++) {
@@ -243,10 +245,14 @@ public class Main {
 
 	}
 
-	static void print(){
+	static void print(String [] [] contacts){
 		for (int i = 0; i < 10; i++) {
 			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
 		}
+	}
+
+	static int index(String [] [] contacts, int index){
+		return (contacts [index] [0] != null) ? index+1 : index-1;
 	}
 
 }
