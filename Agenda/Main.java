@@ -27,7 +27,7 @@ public class Main {
 			System.out.println("Menu \n Which option would you desire to use \n\t1. Add Contact\n\t 2. Delete Contact \n\t 3. Edit Contacts  \n\t 4. Search Contact \n\t 5. Display Contacts \n\t 6. Exit and export contacts ");
 			option = Integer.parseInt(sc.nextLine());
 			// Additional Check for preventing doing actions in a empty book
-			if (index <= 0 && ( option >= 2 && option <=5 ) ) {
+			if ( index <= 0 && ( option >= 2 && option <=5 ) ) {
 				System.out.println("The contact book is empty");
 				continue;
 			} else {
@@ -78,6 +78,9 @@ public class Main {
 	/**
 	 * Add a contact after give the requested information calling the writeDataMethod to do so
 	 *
+	 * @param {String [] []} contacts Current book of contacts
+ 	 * @param {int} index contacts in the book
+	 *
 	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is added
 	 */
 	static String [] [] addContact (String [] [] contacts, int index) {
@@ -86,10 +89,10 @@ public class Main {
 		for (int i = 0; i < index ; i++) {
 			System.out.println(contact[0] + " - " + contacts[i][0]);
 			System.out.println(contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()));
-			if (contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()) < 0) {
-				for (int j = index-1; j>=i; j--) {
-					for ( int k = 0; k < 5; k++) {
-						contacts [j+1] [k] = contacts[j][k];
+			if ( contact[0].toLowerCase().compareTo(contacts[i][0].toLowerCase()) < 0) {
+				for (int j = index-1; j >= i; j--) {
+					for (int k = 0; k < 5; k++) {
+						contacts [j + 1] [k] = contacts[j][k];
 					}
 				}
 				auxindex = i;
@@ -98,17 +101,20 @@ public class Main {
 				auxindex++;
 			}
 		}
-		for ( int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			contacts [auxindex] [i] = contact[i];
 		}
 		print(contacts);
 
-		System.out.println("The contact "+ contact[0] + " " + contact[1] + " " + contact[2] + " has been added");
+		System.out.println("The contact " + contact[0] + " " + contact[1] + " " + contact[2] + " has been added");
 		return contacts;
 	}
 
 	/**
 	 * Deletes a contact. First you have to search the contact, then you just type the index that the searched gave you
+	 *
+	 * @param {String [] []} contacts Current book of contacts
+ 	 * @param {int} index contacts in the book
 	 *
 	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is deleted
 	 */
@@ -118,16 +124,16 @@ public class Main {
 			System.out.println("Write the number that matches with the contact you want to delete");
 			int a = Integer.parseInt(sc.nextLine());
 			String [] contact = new String [5];
-			for ( int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) {
 				contact[i] = contacts [a] [i];
 			}
 			for (int j = a; j <= index; j++){
-				for ( int k = 0; k < 5; k++) {
-					contacts [j] [k] = contacts[j+1][k];
+				for (int k = 0; k < 5; k++) {
+					contacts [j] [k] = contacts[j + 1][k];
 				}
 			}
 			print(contacts);
-			System.out.println("The contact "+ contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been removed");
+			System.out.println("The contact " + contact[0]+ " " +contact[1]+ " " + contact[2]+ " has been removed");
 		} else {
 			System.out.println("There are not contacts with the given information");
 		}
@@ -137,6 +143,9 @@ public class Main {
 	/**
 	 * Edits a contacts; you have to search the contat that you want to edit
 	 *
+	 * @param {String [] []} contacts Current book of contacts
+ 	 * @param {int} index contacts in the book
+	 *
 	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is edited
 	 */
 	static String [] [] editContact (String [] [] contacts, int index) {
@@ -145,7 +154,7 @@ public class Main {
 			System.out.println("Write the number that matches with the contact you want to edit");
 			int a = Integer.parseInt(sc.nextLine());
 			String [] contact = writeData();
-			for ( int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) {
 				contacts [a] [i] = contact[i];
 			}
 		} else {
@@ -156,6 +165,9 @@ public class Main {
 
 	/**
 	 * Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
+	 *
+	 * @param {String [] []} contacts Current book of contacts
+ 	 * @param {int} index contacts in the book
 	 *
 	 * @return { int } auxiliarIndex Number of register that match with the pattern
 	 */
@@ -173,11 +185,11 @@ public class Main {
 		String [] categories = {
 			"Name", "Parental Surname", "Maternal Surname", "Telephone Number", "Address"
 		};
-		System.out.println("Write the "+ categories[option-1]+" that you want to search");
+		System.out.println("Write the " + categories[option-1]+ " that you want to search");
 		String search = sc.nextLine();
 		for (int i = 0; i < index; i++){
 			if (contacts[i][option-1].toLowerCase().contains(search.toLowerCase())) {
-				System.out.println("| " + i+ "\t"+contacts[i][0]+"\t | \t\t"+ contacts[i][1] +" "+ contacts[i][2] +"\t\t | "+contacts[i][3]+" | \t "+ contacts[i][4]+"\t |");
+				System.out.println("| " + i+ "\t" +contacts[i][0]+ "\t | \t\t" + contacts[i][1] + " " + contacts[i][2] + "\t\t | " +contacts[i][3]+ " | \t " + contacts[i][4]+ "\t |");
 				auxiliarIndex++;
 			}
 		}
@@ -229,41 +241,49 @@ public class Main {
 		System.out.println("Write your full address");
 		contact[4] = sc.nextLine();
 		return contact;
+
 	}
 
 	/**
-	 *
 	 * Display all contacts
+	 *
+	 * @param {String [] []} contacts Current book of contacts
+	 * @param {int} index contacts in the book
+	 *
 	 * @return {Void}
 	 */
 	static void displayContacts (String [] [] contacts, int index) {
 		// This method prints the whole contacts [] [], which contains all the contacts
 		System.out.println("| \tName\t | \t\tLastname\t\t | Telephone Number | \t Address \t |");
 		for (int i = 0; i < index; i++) {
-			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
+			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " " + contacts[i][2] + "\t\t | " + contacts[i][3]+ " | \t " + contacts[i][4] + "\t |");
 		}
 
 
 	}
 
 	/**
-	*
 	* Debug method after an action is done
+	*
+	* @@param {String [] []} contacts Current book of contacts
+	*
 	* @return {Void}
 	*/
 	static void print(String [] [] contacts){
 		for (int i = 0; i < 10; i++) {
-			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
+			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " " + contacts[i][2] + "\t\t | " + contacts[i][3] + " | \t " + contacts[i][4] + "\t |");
 		}
 	}
 
 	/**
-	*
 	* Provides the stability of the size of the records, also avoids that a overflow or underflow is commited
+	*
+	* @param {String [] []} contacts The current
+	*
 	* @return {int} Quantity of contacts that the book has
 	*/
 	static int index(String [] [] contacts, int index){
-		return (contacts [index] [0] != null) ? index+1 : index-1;
+		return ( contacts [index] [0] != null ) ? index + 1 : index - 1;
 	}
 
 }
