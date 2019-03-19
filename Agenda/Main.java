@@ -40,19 +40,19 @@ public class Main {
 			switch (option) {
 				// Add Contact
 				case 1:
-					contacts = addContact(contacts, index);
+					addContact(contacts, index);
 					index = index(contacts, index);
 					System.out.println(index);
 					break;
 				// Delete Contact
 				case 2:
-					contacts = deleteContact(contacts,index);
+					deleteContact(contacts,index);
 					index = index(contacts, index);
 					System.out.println(index);
 					break;
 				// Edit Contact
 				case 3:
-					contacts = editContact(contacts, index);
+					editContact(contacts, index);
 					break;
 				// Search Contact
 				case 4:
@@ -78,7 +78,7 @@ public class Main {
 	/**
 	 * Add a contact after give the requested information calling the writeDataMethod to do so
 	 *
-	 * @return {Void}
+	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is added
 	 */
 	static String [] [] addContact (String [] [] contacts, int index) {
 		int auxindex = 0;
@@ -94,7 +94,7 @@ public class Main {
 				}
 				auxindex = i;
 				break;
-			}else{
+			} else {
 				auxindex++;
 			}
 		}
@@ -108,9 +108,9 @@ public class Main {
 	}
 
 	/**
-	 * Deletes a contact. First you have to search the contact, then you just put the index that the searched gave you
+	 * Deletes a contact. First you have to search the contact, then you just type the index that the searched gave you
 	 *
-	 * @return {Void}
+	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is deleted
 	 */
 	static String [] [] deleteContact (String [] [] contacts, int index) {
 
@@ -137,7 +137,7 @@ public class Main {
 	/**
 	 * Edits a contacts; you have to search the contat that you want to edit
 	 *
-	 * @return {Void}
+	 * @return {String [] []} contacts The full array that is consisted of each register after a contact is edited
 	 */
 	static String [] [] editContact (String [] [] contacts, int index) {
 
@@ -157,7 +157,7 @@ public class Main {
 	/**
 	 * Search the contacts you want, this search can be used by any category. Name, Surnames, Phone and Address. Also this method return the number of contacts that matches the param
 	 *
-	 * @return auxiliarIndex Number of register that match with the pattern
+	 * @return { int } auxiliarIndex Number of register that match with the pattern
 	 */
 	static int searchContact (String [] [] contacts, int index) {
 		int option;
@@ -212,12 +212,13 @@ public class Main {
 	/**
 	 * Provides the process to retrieve information of the user for adding or editing contacts
 	 *
-	 * @return {Void}
+	 * @return {String []} contact A contacts is created in order to perform a/an add/edit/delete action in the respective method
 	 */
 	static String [] writeData () {
 
 		// [0]: name, [1]: Parental Surname, [2]: Maternal Surname, [3]: Telephone Number, [4]: Address
-	 	String [] contact = new String [5];System.out.println("Write name");
+	 	String [] contact = new String [5];
+		System.out.println("Write name");
 		contact[0] = sc.nextLine();
 		System.out.println("Write your Parental Surname");
 		contact[1] = sc.nextLine();
@@ -245,12 +246,22 @@ public class Main {
 
 	}
 
+	/**
+	*
+	* Debug method after an action is done
+	* @return {Void}
+	*/
 	static void print(String [] [] contacts){
 		for (int i = 0; i < 10; i++) {
 			System.out.println("| \t" + contacts[i][0] + "\t | \t\t" + contacts[i][1] + " "+ contacts[i][2] + "\t\t | "+ contacts[i][3]+ " | \t "+ contacts[i][4] +"\t |");
 		}
 	}
 
+	/**
+	*
+	* Provides the stability of the size of the records, also avoids that a overflow or underflow is commited
+	* @return {int} Quantity of contacts that the book has
+	*/
 	static int index(String [] [] contacts, int index){
 		return (contacts [index] [0] != null) ? index+1 : index-1;
 	}
