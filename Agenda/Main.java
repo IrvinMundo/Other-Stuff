@@ -278,7 +278,8 @@ public class Main {
 	/**
 	* Provides the stability of the size of the records, also avoids that a overflow or underflow is commited
 	*
-	* @param {String [] []} contacts The current
+    * @param {String [] []} contacts Current book of contacts
+    * @param {int} index contacts in the book
 	*
 	* @return {int} Quantity of contacts that the book has
 	*/
