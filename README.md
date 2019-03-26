@@ -9,8 +9,11 @@ Contacts book
 #### Commands to run the project:
 
 
-    javac Main.java
-    java main
+```
+javac Main.java
+java main 
+```
+
 
 
 
