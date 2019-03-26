@@ -1,5 +1,5 @@
 # Other-Stuff
-Minor Projects
+Contacts book
 # Contacts Book
 
 #### Requirements
@@ -16,7 +16,7 @@ Minor Projects
 
 ## Description
 
-This program consists of a simple contacts Book
+Simple Contacts Book 
 
 ## Functions
 
