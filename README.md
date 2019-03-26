@@ -45,3 +45,5 @@ The functions that are provided are the basics:
     * Address
 
 ### License
+
+[More info](./LICENSE.md)
