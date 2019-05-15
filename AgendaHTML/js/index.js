@@ -82,7 +82,7 @@ var contacts = [];
 	}
 
     function prepareEditContact (contact) {
-        console.log("entro");
+
         let editedDiv = document.getElementById("edited");
         editedDiv.style.display = 'none';
 
@@ -169,7 +169,7 @@ var contacts = [];
         let body = document.getElementById(div_selected);
         // Crea un elemento <table> y un elemento <tbody>
         let tabla   = document.createElement("table");
-        tabla.id = `table${div_selected}`;
+        tabla.id = `table_${div_selected}`;
         let tblHead = document.createElement("thead");
         // Crea las hileras de la tabla
         let hileraHead = document.createElement("tr");
@@ -251,7 +251,7 @@ var contacts = [];
         let goBack = document.createElement("input");
         goBack.type = "button";
         goBack.value = "Go back";
-        goback.onclick = toHome(table.id);
+        goBack.onclick = toHome(tabla.id);
         body.appendChild(goBack);
         // modifica el atributo "border" de la tabla y lo fija a "2";
         tabla.setAttribute("border", "2");
@@ -259,10 +259,13 @@ var contacts = [];
     }
 
     function toHome(the_div) {
-
-        let removeTab = document.getElementById('the_div');
-        let parentTab = removeTab.parentElement;
-        parentTab.removeChild(removeTab);
+        console.log(the_div.id);
+        if (the_div.id != "add" && the_div.id != "show") {
+            console.log("entro");
+            let removeTab = document.getElementById('the_div');
+            let parentTab = removeTab.parentElement;
+            parentTab.removeChild(removeTab);
+        }
 
         let hideable_divs = document.getElementsByClassName("hideable");
         console.log(hideable_divs.length);
