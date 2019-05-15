@@ -6,10 +6,10 @@
 
 #### Commands to run the project:
 
-    ```
+
     javac Main.java
     java main
-    ```
+
 
 
 ## Description
@@ -41,3 +41,5 @@ The functions that are provided are the basics:
     * Maternal Surname
     * Telephone
     * Address
+
+### License
