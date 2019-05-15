@@ -1,0 +1,156 @@
+<HTML>
+
+<HEAD>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/index.css">
+</HEAD>
+<BODY onload="initialize()">
+    <script src="../js/index.js">
+
+    </script>
+    <div>
+        <h1>Menu<h1>
+        <div id = "home">
+            <nav>
+                <ul>
+
+                    <li><a href="#add" id="addOption" >Add a Contact.<a></li>
+
+                    <li><a href="#delete" id="deleteOption" >Delete a Contact.</a></li>
+
+                    <li><a href="#edit" id="editOption" >Edit a Contact.</a></li>
+
+                    <li><a href="#search" id="searchOption" >Search a Contact.</a></li>
+
+                    <li><a href="#display" id="displayOption">Display Contacts</a></li>
+
+
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div id="add" class="hideable">
+            <h1> Add a Contact </h1>
+
+            <h3> Name: </h3>
+            <input id="nameAdd" type="text" name="name"/>
+
+            <h3> Parental Surname: </h3>
+            <input id="parentalAdd" type="text" name="paternal"/>
+
+            <h3> Maternal Surname: </h3>
+            <input id="maternalAdd" type="text" name="maternal"/>
+
+            <h3> Telephone: </h3>
+            <input id="telephoneAdd" type="text" name="telephone"/>
+
+            <h3> Address: </h3>
+            <input id="addressAdd" type="text" name="address"/>
+
+            <input id="button" type="button" onclick="addContact()" value="Add Contact"/>
+
+            <input id="button" type="button" onclick="toHome()" value="Go back"/>
+
+        </div>
+
+
+        <div id="delete" class="hideable">
+
+            <h1> Delete a Contact </h1>
+
+            <div id="deleted showTable" class="hideable"></div>
+
+            <input id="button" type="button" onclick="toHome()" value="Go back"/>
+
+        </div>
+
+        <div id="edit" class="hideable">
+
+            <h1> Edit a Contact </h1>
+
+            <div id = "edited" class="hideable"></div>
+            <div id = "editForm" class="hideable">
+
+                <h3> Index: </h3>
+                <h3 id = "indexEdit" > </h3
+
+                <h3> Name: </h3>
+                <input id="nameAdd" type="text" name="name"/>
+
+                <h3> Parental Surname: </h3>
+                <input id="parentalAdd" type="text" name="paternal"/>
+
+                <h3> Maternal Surname: </h3>
+                <input id="maternalAdd" type="text" name="maternal"/>
+
+                <h3> Telephone: </h3>
+                <input id="telephoneAdd" type="text" name="telephone"/>
+
+                <h3> Address: </h3>
+                <input id="addressAdd" type="text" name="address"/>
+
+                <input id="button" type="button" onclick="editContact()" value="Edit Contact"/>
+
+                <input id="button" type="button" onclick="toHome()" value="Go back"/>
+            </div>
+
+        </div>
+
+        <div id="display" class="hideable">
+        </div>
+
+        <div id="searchOption" class = "hideable">
+
+            <h1> Search a Contact </h1>
+
+            <h3> Name: </h3>
+            <input id="nameSearch" type="text" name="name"/>
+
+            <h3> Parental Surname: </h3>
+            <input id="parentalSearch" type="text" name="paternal"/>
+
+            <h3> Maternal Surname: </h3>
+            <input id="maternalSearch" type="text" name="maternal"/>
+
+            <h3> Telephone: </h3>
+            <input id="telephoneSearch" type="text" name="telephone"/>
+
+            <h3> Address: </h3>
+            <input id="addressSearch" type="text" name="address"/>
+
+            <input id="button" type="button" onclick="searchContact()" value="Edit Contact"/>
+
+            <div id = "searched"></div>
+
+            <input id="button" type="button" onclick="toHome()" value="Go back"/>
+
+        </div>
+
+        <div id = "show" class = "hideable">
+            <h1> Show a Contact </h1>
+
+            <h3> Name: </h3>
+            <h3 id="nameShow"></h3>
+
+            <h3> Parental Surname: </h3>
+            <h3 id="parentalShow"></h3>
+
+            <h3> Maternal Surname: </h3>
+            <h3 id="maternalShow"></h3>
+
+            <h3> Telephone: </h3>
+            <h3 id="telephoneShow"></h3>
+
+            <h3> Address: </h3>
+            <h3 id="addressSearch"></h3>
+
+            <input id="button" type="button" onclick="toHome()" value="Go back"/>
+
+        </div>
+
+    </div>
+
+</BODY>
+</HTML>

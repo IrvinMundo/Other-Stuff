@@ -1,0 +1,27 @@
+h1 {
+    color: #8BB371;
+    font-family:  Didot, serif, Gotham;
+}
+
+li :hover {
+    background-color: #FAFF79;
+    width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #8BB371;
+    text-decoration:none;
+}
+
+body {
+    background-color: white;
+}
+.hideable {
+    background-color: #FAFF79;
+    height: auto;
+    display: none;
+}
